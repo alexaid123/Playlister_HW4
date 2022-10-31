@@ -10,5 +10,5 @@ export default function HomeWrapper() {
     if (auth.loggedIn)
         return <HomeScreen />
     else
-        return <SplashScreen />
+        return <SplashScreen /> 
 }

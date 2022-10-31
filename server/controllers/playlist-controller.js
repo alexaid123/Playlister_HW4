@@ -57,7 +57,7 @@ deletePlaylist = async (req, res) => {
         }
 
         // DOES THIS LIST BELONG TO THIS USER?
-        async function asyncFindUser(list) {
+       async function asyncFindUser(list) {
             User.findOne({ email: list.ownerEmail }, (err, user) => {
                 console.log("user._id: " + user._id);
                 console.log("req.userId: " + req.userId);
@@ -77,6 +77,7 @@ deletePlaylist = async (req, res) => {
         }
         asyncFindUser(playlist);
     })
+
 }
 getPlaylistById = async (req, res) => {
     console.log("Find Playlist with id: " + JSON.stringify(req.params.id));

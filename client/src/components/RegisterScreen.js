@@ -13,8 +13,15 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
+import MUIErrorAlert from './MUIErrorAlert'
+
+import { GlobalStoreContext } from '../store'
+
+
+
 export default function RegisterScreen() {
     const { auth } = useContext(AuthContext);
+    const { store } = useContext(GlobalStoreContext);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -22,7 +29,7 @@ export default function RegisterScreen() {
         auth.registerUser(
             formData.get('firstName'),
             formData.get('lastName'),
-            formData.get('email'),
+            formData.get('email'), 
             formData.get('password'),
             formData.get('passwordVerify')
         );
@@ -47,6 +54,7 @@ export default function RegisterScreen() {
                     </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
+                        <MUIErrorAlert />
                             <Grid item xs={12} sm={6}>
                                 <TextField
                                     autoComplete="fname"

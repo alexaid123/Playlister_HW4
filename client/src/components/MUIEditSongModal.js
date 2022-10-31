@@ -9,7 +9,8 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 500,
+    height: 180,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -49,7 +50,7 @@ export default function MUIEditSongModal() {
 
     return (
         <Modal
-            open={store.listMarkedForDeletion !== null}
+            open={store.currentSong !== null}
         >
             <Box sx={style}>
             <div
@@ -79,7 +80,7 @@ export default function MUIEditSongModal() {
                         type="text" 
                         defaultValue={artist} 
                         onChange={handleUpdateArtist} />
-                    <div id="you-tube-id-prompt" className="modal-prompt">You Tube Id:</div>
+                    <div id="you-tube-id-prompt" className="modal-prompt">YouTubeId:  </div>
                     <input 
                         id="edit-song-modal-youTubeId-textfield" 
                         className='modal-textfield' 
