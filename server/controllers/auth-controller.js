@@ -99,9 +99,7 @@ registerUser = async (req, res) => {
         const { firstName, lastName, email, password, passwordVerify } = req.body;
         console.log("create user: " + firstName + " " + lastName + " " + email + " " + password + " " + passwordVerify);
         if (!firstName || !lastName || !email || !password || !passwordVerify) {
-            return res
-                .status(400)
-                .json({ errorMessage: "Please enter all required fields." });
+            return res.status(400).json({ errorMessage: "Please enter all required fields." });
         }
         console.log("all fields provided");
         if (password.length < 8) {
@@ -146,23 +144,10 @@ registerUser = async (req, res) => {
        const token = auth.signToken(savedUser._id);
         console.log("token:" + token);
 
-        /*await res.cookie("token", token, {
+        await res.cookie("token", token, {
             httpOnly: true,
             secure: true,
             sameSite: "none"
-        }).status(200).json({
-            success: true,
-            user: {
-                firstName: savedUser.firstName,
-                lastName: savedUser.lastName,  
-                email: savedUser.email              
-            }
-        })*/
-
-        res.cookie("token", token, {
-            httpOnly: true,
-            secure: true,
-            sameSite: true
         }).status(200).json({
             success: true,
             user: {

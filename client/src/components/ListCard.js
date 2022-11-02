@@ -107,7 +107,7 @@ function ListCard(props) {
                 id={"list-" + idNamePair._id}
                 label="Playlist Name"
                 name="name"
-                autoComplete="Playlist Name"
+                autoComplete="Playlist Name" 
                 className='list-card'
                 onKeyPress={handleKeyPress}
                 onChange={handleUpdateText}

@@ -26,13 +26,17 @@ export default function RegisterScreen() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
-        auth.registerUser(
-            formData.get('firstName'),
-            formData.get('lastName'),
-            formData.get('email'), 
-            formData.get('password'),
-            formData.get('passwordVerify')
-        );
+
+        
+            auth.registerUser(
+                store,
+                formData.get('firstName'),
+                formData.get('lastName'),
+                formData.get('email'), 
+                formData.get('password'),
+                formData.get('passwordVerify')
+            );
+   
     };
 
     return (

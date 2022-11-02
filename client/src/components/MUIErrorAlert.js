@@ -3,43 +3,57 @@ import GlobalStoreContext from '../store';
 import * as React from 'react';
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle"
+import Box from '@mui/material/Box';
+import List from '@mui/material/List';
+import Modal from '@mui/material/Modal';
+
+
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
+    left: '-36%'
 };
+
 
 export default function MUIErrorAlert() {
     const { store } = useContext(GlobalStoreContext);
-    let name = "";
-    if (store.listMarkedForDeletion) {
-        name = store.listMarkedForDeletion.name;
-    }
-    function handleDeleteList(event) {
-        store.deleteMarkedList();
-    }
-    function handleCloseModal(event) {
-        store.unmarkListForDeletion();
-    }
+   
 
 
-    if(store.error)
-    {
+  const handleClose = () => {
+    store.hideError();
+  };
+
+
+    let modalJSX = "";
+    if (store.error != null) {
+        modalJSX = 
+        <div>
+      <Dialog open={true} onClose={handleClose}>
+        <DialogContent>
+        <Alert open={false} severity="warning">
+      <AlertTitle>Error:</AlertTitle>
+       <strong>{store.error}</strong>
+      </Alert> 
+        </DialogContent>
+        <DialogActions>
+          <Button sx={style} onClick={handleClose}>Cancel</Button>
+        </DialogActions>
+      </Dialog>
+      </div>;
+    }
+    console.log("Error is " + store.error);
         return (
-            <Alert severity="error"  open={store.listMarkedForDeletion !== null}>
-            <AlertTitle>Test</AlertTitle>
-            This is an error alert — <strong>check it out!</strong>
-          </Alert> 
+            <div >
+            {modalJSX}
+          </div>
+      
+            
         );
-    }
-    return (
-       <div />
-    );
 }
