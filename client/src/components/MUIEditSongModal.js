@@ -10,7 +10,7 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 500,
-    height: 180,
+    height: 250,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -88,8 +88,9 @@ export default function MUIEditSongModal() {
                         defaultValue={youTubeId} 
                         onChange={handleUpdateYouTubeId} />
                 </div>
-                <div className="modal-south">
-                    <input 
+                <div className="modal-south"
+                >
+                    <input
                         type="button" 
                         id="edit-song-confirm-button" 
                         className="modal-button" 

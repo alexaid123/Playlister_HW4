@@ -294,6 +294,11 @@ input {
   color:white;
 }
 
+.modal-textfield
+{
+  margin-left: 3.5%;
+}
+
 .modal-dialog {
   position: relative;
   max-width: 800px;
@@ -349,6 +354,7 @@ input {
   flex-direction: row;
   background-color: lightgray;
   height:50px;
+  margin-top: 7%;
   align-items: center;
   justify-content: center;
 }
@@ -360,6 +366,7 @@ input {
   grid-template-rows: 33% 33% 33%;
   gap: 10px 20px;
   font-size: 48pt;
+  margin-top: 3.5%;
 }
 
 .modal-prompt {  
