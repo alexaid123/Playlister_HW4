@@ -16,13 +16,19 @@ import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
+import MUIErrorAlert from './MUIErrorAlert'
+
+import { GlobalStoreContext } from '../store'
+
 export default function LoginScreen() {
     const { auth } = useContext(AuthContext);
+    const { store } = useContext(GlobalStoreContext);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
         auth.loginUser(
+            store,
             formData.get('email'),
             formData.get('password') 
         );
@@ -63,6 +69,7 @@ export default function LoginScreen() {
                         Sign in
                     </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                    <MUIErrorAlert />
                         <TextField
                             margin="normal"
                             required

@@ -82,12 +82,12 @@ function AuthContextProvider(props) {
         }
 
     } catch (error) {
-      //console.log(store.error);
       store.addErrorM(error.response.data.errorMessage);
     }
     }
 
-    auth.loginUser = async function(email, password) {
+    auth.loginUser = async function(store, email, password) {
+        try {
         const response = await api.loginUser(email, password);
         if (response.status === 200) {
             authReducer({
@@ -98,6 +98,9 @@ function AuthContextProvider(props) {
             })
             history.push("/");
         }
+    } catch (error) {
+        store.addErrorM(error.response.data.errorMessage);
+      }
     }
 
     auth.logoutUser = async function() {
