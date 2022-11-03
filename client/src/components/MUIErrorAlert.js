@@ -17,7 +17,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 const style = {
-    left: '-36%'
+    left: '-40%'
 };
 
 
@@ -43,7 +43,7 @@ export default function MUIErrorAlert() {
       </Alert> 
         </DialogContent>
         <DialogActions>
-          <Button sx={style} onClick={handleClose}>Cancel</Button>
+          <Button sx={style} onClick={handleClose}>Close</Button>
         </DialogActions>
       </Dialog>
       </div>;

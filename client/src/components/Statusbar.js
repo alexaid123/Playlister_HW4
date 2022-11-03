@@ -10,11 +10,15 @@ import { Typography } from '@mui/material'
 function Statusbar() {
     const { store } = useContext(GlobalStoreContext);
     let text ="";
+    let color;
     if (store.currentList)
+    {
         text = store.currentList.name;
+        color = "green";
+    }
     return (
         <div id="playlister-statusbar">
-            <Typography variant="h4">{text}</Typography>
+            <Typography variant="h4" align="center" padding ="18px" bgcolor={color} fontFamily="Comic-sans">{text}</Typography>
         </div>
     );
 }

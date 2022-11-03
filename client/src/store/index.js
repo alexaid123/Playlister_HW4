@@ -7,6 +7,7 @@ import MoveSong_Transaction from '../transactions/MoveSong_Transaction'
 import RemoveSong_Transaction from '../transactions/RemoveSong_Transaction'
 import UpdateSong_Transaction from '../transactions/UpdateSong_Transaction'
 import AuthContext from '../auth'
+import { getStepConnectorUtilityClass } from '@mui/material'
 
 /*
     This is our global data store. Note that it uses the Flux design pattern,
@@ -373,9 +374,12 @@ function GlobalStoreContextProvider(props) {
     store.deleteList = function (id) {
         async function processDelete(id) {
             let response = await api.deletePlaylistById(id);
-            if (response.data.success) {
+            store.closeCurrentList();
+            
+            if (response.status === 200) {
                 store.loadIdNamePairs();
-                history.push("/");
+                history.push("/"); 
+               console.log("inside baby");
             }
         }
         processDelete(id);
