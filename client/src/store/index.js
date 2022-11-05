@@ -59,7 +59,8 @@ function GlobalStoreContextProvider(props) {
         listNameActive: false,
         listIdMarkedForDeletion: null,
         listMarkedForDeletion: null,
-        error: null
+        error: null,
+        called: false
     });
     const history = useHistory();
 
@@ -243,6 +244,33 @@ function GlobalStoreContextProvider(props) {
     // THESE ARE THE FUNCTIONS THAT WILL UPDATE OUR STORE AND
     // DRIVE THE STATE OF THE APPLICATION. WE'LL CALL THESE IN 
     // RESPONSE TO EVENTS INSIDE OUR COMPONENTS.
+
+    store.start = function()
+    {
+        let callUndo = () => {
+            store.undo();
+        };
+
+        let callRedo = () => {
+            store.redo();
+        };
+        if(!store.called)
+        {
+            document.addEventListener('keydown', function(event){
+                if((event.key === 'z' || event.key === 'Z') && event.ctrlKey)
+                {
+                    callUndo();
+                }
+                else if((event.key === 'y' || event.key === 'Y') && event.ctrlKey)
+                {
+                    callRedo();
+                }
+            } );
+            store.called = true;
+        }
+    }
+
+
 
     // THIS FUNCTION PROCESSES CHANGING A LIST NAME
     store.changeListName = function (id, newName) {
