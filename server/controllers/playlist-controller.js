@@ -65,7 +65,26 @@ deletePlaylist = async (req, res) => {
                 if (user._id == req.userId) {
                     console.log("correct user!");
                     Playlist.findOneAndDelete({ _id: req.params.id }, () => {
-                        return res.status(200).json({});
+
+                        const index = user.playlists.indexOf(req.params.id);
+                        console.log("Index is " + index);
+                        if (index > -1) { 
+                            user.playlists.splice(index, 1); 
+                        }
+                        
+                        user
+                            .save()
+                                .then(() => {
+                                    return res.status(200).json({});
+                                })
+                                .catch(error => {
+                                    return res.status(400).json({
+                                        errorMessage: 'Playlist Not Created!'
+                                    })
+                                })
+
+                            
+                                
                     }).catch(err => console.log(err))
                 }
                 else {
